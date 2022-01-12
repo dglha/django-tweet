@@ -1,0 +1,61 @@
+<!-- templates/registration/login.html -->
+{% extends 'auth_base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                        <form class="box" method="post">
+                            {% csrf_token %}
+                            {{ form.non_field.errors }}
+                            <div class="field">
+                                <label for="" class="label">Username</label>
+                                <div class="control has-icons-left">
+                                    {{ form.username }}
+                                    {{ form.username.errors }}
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="" class="label">Password</label>
+                                <div class="control has-icons-left">
+                                    {{ form.password1 }}
+                                    {% if form.password1.errors %}
+                                        <div class="content has-text-danger">{{ form.password1.errors }}</div>
+                                    {% endif %}
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="" class="label">Confirm Password</label>
+                                <div class="control has-icons-left">
+                                    {{ form.password2 }}
+                                    {% if form.password2.errors %}
+                                        <div class="content has-text-danger">{{ form.password2.errors }}</div>
+                                    {% endif %}
+                                    <span class="icon is-small is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <button class="button is-success">
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

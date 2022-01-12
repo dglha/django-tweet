@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="column">
+        {% for tweet in tweets %}
+            <div class="box">
+                {{ tweet.body }}
+                <span class="is-small has-text-grey-light">
+                ({{ tweet.created_at }} by {{ tweet.user.username }})
+            </span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="column is-one-third">
+
+        <div class="block">
+            <a href="{% url 'tweet:profile_list' %} ">
+                <button class="button is-dark is-outlined is-fullwidth">
+                    All Profiles
+                </button>
+            </a>
+        </div>
+
+        <div class="block">
+            <a href="{% url 'tweet:profile' request.user.profile.id %} ">
+                <button class="button is-success is-light is-outlined is-fullwidth">
+                    My Profile
+                </button>
+            </a>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button is-success is-fullwidth is-medium mt-5"
+                    type="submit">Tweet
+            </button>
+        </form>
+    </div>
+
+{% endblock content %}
